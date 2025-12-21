@@ -13,7 +13,13 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
   },
   experimental: {
-    serverActions: true,
+    serverActions: {
+      bodySizeLimit: '10mb', // Add this line
+    },
+  },
+  // Also add this outside experimental for Next.js 16+
+  serverActions: {
+    bodySizeLimit: '10mb', // Add this line too
   },
 }
 

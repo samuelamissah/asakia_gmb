@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Search, Filter, Grid3x3, List, Calendar, MapPin, Clock } from 'lucide-react'
-import { client } from '@/sanity/lib/sanity'
+import { client } from '@/sanity/lib/client'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -93,7 +93,7 @@ export default function GalleryPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gold-500"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-yellow-500"></div>
       </div>
     )
   }
@@ -132,7 +132,7 @@ export default function GalleryPage() {
               placeholder="Search gallery..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 border border-earth-200 rounded-full focus:outline-none focus:border-gold-500"
+              className="w-full pl-12 pr-4 py-3 border border-earth-200 rounded-full focus:outline-none focus:border-yellow-500"
             />
           </div>
           
@@ -165,8 +165,8 @@ export default function GalleryPage() {
               onClick={() => setSelectedCategory(category.id)}
               className={`px-4 py-2 rounded-full border transition-colors ${
                 selectedCategory === category.id
-                  ? 'border-gold-500 bg-gold-50 text-gold-600'
-                  : 'border-earth-200 text-earth-400 hover:border-gold-500'
+                  ? 'border-yellow-500 bg-yellow-50 text-yellow-600'
+                  : 'border-earth-200 text-earth-400 hover:border-yellow-500'
               }`}
             >
               {category.label}
@@ -189,7 +189,7 @@ export default function GalleryPage() {
                 setSearch('')
                 setSelectedCategory('all')
               }}
-              className="text-gold-500 hover:text-gold-600 font-medium"
+              className="text-yellow-500 hover:text-yellow-600 font-medium"
             >
               Clear filters
             </button>
@@ -218,23 +218,23 @@ export default function GalleryPage() {
       >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           <div className="text-center">
-            <div className="text-3xl font-bold text-gold-500">{galleryItems.length}</div>
+            <div className="text-3xl font-bold text-yellow-500">{galleryItems.length}</div>
             <div className="text-sm text-earth-300">Total Images</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-gold-500">
+            <div className="text-3xl font-bold text-yellow-500">
               {new Set(galleryItems.map(item => item.category)).size}
             </div>
             <div className="text-sm text-earth-300">Categories</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-gold-500">
+            <div className="text-3xl font-bold text-yellow-500">
               {new Date().getFullYear()}
             </div>
             <div className="text-sm text-earth-300">Current Year</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-gold-500">
+            <div className="text-3xl font-bold text-yellow-500">
               {galleryItems.filter(item => new Date(item.date || '').getFullYear() === new Date().getFullYear()).length}
             </div>
             <div className="text-sm text-earth-300">This Year</div>
@@ -255,7 +255,7 @@ function GalleryCard({ item, index }: { item: GalleryItem; index: number }) {
       className="group relative cursor-pointer overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
     >
       {/* Image Container */}
-      <div className="relative h-64 md:h-80 bg-gradient-to-br from-gold-50 to-earth-50">
+      <div className="relative h-64 md:h-80 bg-gradient-to-br from-yellow-50 to-earth-50">
         {item.image?.asset?.url ? (
           <Image
             src={item.image.asset.url}
@@ -278,7 +278,7 @@ function GalleryCard({ item, index }: { item: GalleryItem; index: number }) {
         
         {/* Category Badge */}
         <div className="absolute top-4 left-4">
-          <div className="inline-block px-3 py-1 bg-gold-500 text-white text-xs rounded-full">
+          <div className="inline-block px-3 py-1 bg-yellow-500 text-white text-xs rounded-full">
             {item.category || 'Uncategorized'}
           </div>
         </div>
@@ -308,14 +308,14 @@ function GalleryCard({ item, index }: { item: GalleryItem; index: number }) {
             </div>
           )}
           
-          <div className="text-gold-500 text-sm font-medium group-hover:text-gold-600 transition-colors">
+          <div className="text-yellow-500 text-sm font-medium group-hover:text-yellow-600 transition-colors">
             View Details →
           </div>
         </div>
       </div>
 
       {/* Hover Effect */}
-      <div className="absolute inset-0 border-2 border-gold-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+      <div className="absolute inset-0 border-2 border-yellow-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
     </motion.div>
   )
 }
@@ -331,7 +331,7 @@ function GalleryListItem({ item, index }: { item: GalleryItem; index: number }) 
     >
       <div className="flex flex-col md:flex-row">
         {/* Image */}
-        <div className="md:w-64 h-48 md:h-auto relative bg-gradient-to-br from-gold-50 to-earth-50">
+        <div className="md:w-64 h-48 md:h-auto relative bg-gradient-to-br from-yellow-50 to-earth-50">
           {item.image?.asset?.url ? (
             <Image
               src={item.image.asset.url}
@@ -354,7 +354,7 @@ function GalleryListItem({ item, index }: { item: GalleryItem; index: number }) 
         <div className="flex-1 p-6">
           <div className="flex flex-col md:flex-row md:items-start justify-between mb-3">
             <div>
-              <div className="inline-block px-3 py-1 bg-gold-100 text-gold-600 text-xs rounded-full mb-2">
+              <div className="inline-block px-3 py-1 bg-yellow-100 text-yellow-600 text-xs rounded-full mb-2">
                 {item.category || 'Uncategorized'}
               </div>
               <h3 className="font-heading text-xl font-semibold text-earth-500 mb-2">
@@ -406,7 +406,7 @@ function GalleryListItem({ item, index }: { item: GalleryItem; index: number }) 
                 day: 'numeric',
               })}
             </div>
-            <button className="text-gold-500 hover:text-gold-600 font-medium">
+            <button className="text-yellow-500 hover:text-yellow-600 font-medium">
               View Full Image →
             </button>
           </div>

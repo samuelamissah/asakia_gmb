@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
-import { client } from '@/sanity/lib/sanity'
+import { client } from '@/sanity/lib/client'
 import { PortableText } from '@portabletext/react'
 import Image from 'next/image'
 import { Calendar, MapPin, Clock, Users, ExternalLink, ArrowLeft, Share2, Download } from 'lucide-react'
@@ -137,7 +137,7 @@ export default function EventPage() {
   const getCategoryColor = (category: string) => {
     switch (category) {
       case 'cultural': return 'bg-forest'
-      case 'pageant': return 'bg-gold-500'
+      case 'pageant': return 'bg-yellow-500'
       case 'charity': return 'bg-clay'
       case 'brand': return 'bg-royal'
       case 'media': return 'bg-blue-500'
@@ -149,7 +149,7 @@ export default function EventPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gold-500"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-yellow-500"></div>
       </div>
     )
   }
@@ -165,7 +165,7 @@ export default function EventPage() {
         </p>
         <Link
           href="/events"
-          className="inline-flex items-center px-6 py-3 bg-gold-500 text-white rounded-full hover:bg-gold-600 transition-colors"
+          className="inline-flex items-center px-6 py-3 bg-yellow-500 text-white rounded-full hover:bg-yellow-600 transition-colors"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Events
@@ -183,7 +183,7 @@ export default function EventPage() {
       <div className="mb-8">
         <Link
           href="/events"
-          className="inline-flex items-center text-gold-500 hover:text-gold-600"
+          className="inline-flex items-center text-yellow-500 hover:text-yellow-600"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Events
@@ -238,7 +238,7 @@ export default function EventPage() {
               {/* Date & Time */}
               <div>
                 <h3 className="font-heading text-lg font-semibold text-earth-500 mb-4 flex items-center">
-                  <Calendar className="w-5 h-5 mr-2 text-gold-500" />
+                  <Calendar className="w-5 h-5 mr-2 text-yellow-500" />
                   Date & Time
                 </h3>
                 <div className="space-y-2">
@@ -260,7 +260,7 @@ export default function EventPage() {
               {/* Location */}
               <div>
                 <h3 className="font-heading text-lg font-semibold text-earth-500 mb-4 flex items-center">
-                  <MapPin className="w-5 h-5 mr-2 text-gold-500" />
+                  <MapPin className="w-5 h-5 mr-2 text-yellow-500" />
                   Location
                 </h3>
                 <div className="space-y-2">
@@ -296,7 +296,7 @@ export default function EventPage() {
             {event.registration && (
               <div className="mb-8">
                 <h3 className="font-heading text-lg font-semibold text-earth-500 mb-4 flex items-center">
-                  <Users className="w-5 h-5 mr-2 text-gold-500" />
+                  <Users className="w-5 h-5 mr-2 text-yellow-500" />
                   Registration
                 </h3>
                 <div className="bg-earth-50 rounded-xl p-6">
@@ -321,7 +321,7 @@ export default function EventPage() {
                             href={event.registration.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center px-6 py-3 bg-gold-500 text-white rounded-full hover:bg-gold-600 transition-colors"
+                            className="inline-flex items-center px-6 py-3 bg-yellow-500 text-white rounded-full hover:bg-yellow-600 transition-colors"
                           >
                             Register Now
                             <ExternalLink className="w-4 h-4 ml-2" />
@@ -364,7 +364,7 @@ export default function EventPage() {
                       className="flex items-start space-x-4 p-4 bg-earth-50 rounded-xl"
                     >
                       <div className="w-20 flex-shrink-0">
-                        <div className="font-medium text-gold-500">{item.time}</div>
+                        <div className="font-medium text-yellow-500">{item.time}</div>
                       </div>
                       <div className="flex-1">
                         <div className="font-medium text-earth-500 mb-1">{item.activity}</div>
@@ -401,8 +401,8 @@ export default function EventPage() {
                           />
                         </div>
                       ) : (
-                        <div className="w-16 h-16 rounded-full bg-gold-100 flex items-center justify-center flex-shrink-0">
-                          <Users className="w-8 h-8 text-gold-500" />
+                        <div className="w-16 h-16 rounded-full bg-yellow-100 flex items-center justify-center flex-shrink-0">
+                          <Users className="w-8 h-8 text-yellow-500" />
                         </div>
                       )}
                       <div>
@@ -427,14 +427,14 @@ export default function EventPage() {
                   href={event.registration.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center px-6 py-3 bg-gold-500 text-white rounded-full hover:bg-gold-600 transition-colors"
+                  className="w-full inline-flex items-center justify-center px-6 py-3 bg-yellow-500 text-white rounded-full hover:bg-yellow-600 transition-colors"
                 >
                   {isPast ? 'View Recording' : 'Register Now'}
                   <ExternalLink className="w-4 h-4 ml-2" />
                 </a>
               )}
               
-              <button className="w-full inline-flex items-center justify-center px-6 py-3 border-2 border-gold-500 text-gold-500 rounded-full hover:bg-gold-50 transition-colors">
+              <button className="w-full inline-flex items-center justify-center px-6 py-3 border-2 border-yellow-500 text-yellow-500 rounded-full hover:bg-yellow-50 transition-colors">
                 <Share2 className="w-4 h-4 mr-2" />
                 Share Event
               </button>

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Calendar, MapPin, Clock, Users, ExternalLink, Filter, Search } from 'lucide-react'
-import { client } from '@/sanity/lib/sanity'
+import { client } from '@/sanity/lib/client'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -149,7 +149,7 @@ export default function EventsPage() {
   const getCategoryColor = (category: string) => {
     switch (category) {
       case 'cultural': return 'bg-forest text-white'
-      case 'pageant': return 'bg-gold-500 text-white'
+      case 'pageant': return 'bg-yellow-500 text-white'
       case 'charity': return 'bg-clay text-white'
       case 'brand': return 'bg-royal text-white'
       case 'media': return 'bg-blue-500 text-white'
@@ -171,7 +171,7 @@ export default function EventsPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gold-500"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-yellow-500"></div>
       </div>
     )
   }
@@ -207,7 +207,7 @@ export default function EventsPage() {
               onClick={() => setViewMode('upcoming')}
               className={`px-6 py-2 rounded-full font-medium transition-colors ${
                 viewMode === 'upcoming'
-                  ? 'bg-gold-500 text-white'
+                  ? 'bg-yellow-500 text-white'
                   : 'text-earth-400 hover:text-earth-500'
               }`}
             >
@@ -217,7 +217,7 @@ export default function EventsPage() {
               onClick={() => setViewMode('past')}
               className={`px-6 py-2 rounded-full font-medium transition-colors ${
                 viewMode === 'past'
-                  ? 'bg-gold-500 text-white'
+                  ? 'bg-yellow-500 text-white'
                   : 'text-earth-400 hover:text-earth-500'
               }`}
             >
@@ -235,7 +235,7 @@ export default function EventsPage() {
               placeholder="Search events..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 border border-earth-200 rounded-full focus:outline-none focus:border-gold-500"
+              className="w-full pl-12 pr-4 py-3 border border-earth-200 rounded-full focus:outline-none focus:border-yellow-500"
             />
           </div>
 
@@ -245,7 +245,7 @@ export default function EventsPage() {
             title='Filter by category'
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="px-4 py-3 border border-earth-200 rounded-full focus:outline-none focus:border-gold-500"
+              className="px-4 py-3 border border-earth-200 rounded-full focus:outline-none focus:border-yellow-500"
             >
               {categories.map((cat) => (
                 <option key={cat.id} value={cat.id}>
@@ -258,7 +258,7 @@ export default function EventsPage() {
             title='Filter by status'
               value={selectedStatus}
               onChange={(e) => setSelectedStatus(e.target.value)}
-              className="px-4 py-3 border border-earth-200 rounded-full focus:outline-none focus:border-gold-500"
+              className="px-4 py-3 border border-earth-200 rounded-full focus:outline-none focus:border-yellow-500"
             >
               {statuses.map((status) => (
                 <option key={status.id} value={status.id}>
@@ -293,7 +293,7 @@ export default function EventsPage() {
                 setSelectedCategory('all')
                 setSelectedStatus('all')
               }}
-              className="text-gold-500 hover:text-gold-600 font-medium"
+              className="text-yellow-500 hover:text-yellow-600 font-medium"
             >
               Clear filters
             </button>
@@ -316,25 +316,25 @@ export default function EventsPage() {
       >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           <div className="text-center">
-            <div className="text-3xl font-bold text-gold-500">
+            <div className="text-3xl font-bold text-yellow-500">
               {events.filter(e => e.status === 'upcoming').length}
             </div>
             <div className="text-sm text-earth-300">Upcoming</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-gold-500">
+            <div className="text-3xl font-bold text-yellow-500">
               {events.filter(e => e.status === 'completed').length}
             </div>
             <div className="text-sm text-earth-300">Completed</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-gold-500">
+            <div className="text-3xl font-bold text-yellow-500">
               {new Set(events.map(e => e.category)).size}
             </div>
             <div className="text-sm text-earth-300">Categories</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-gold-500">
+            <div className="text-3xl font-bold text-yellow-500">
               {events.filter(e => e.location?.online).length}
             </div>
             <div className="text-sm text-earth-300">Virtual Events</div>
@@ -355,7 +355,7 @@ function EventCard({ event, index }: { event: Event; index: number }) {
 
   const categoryColor = {
     cultural: 'bg-forest',
-    pageant: 'bg-gold-500',
+    pageant: 'bg-yellow-500',
     charity: 'bg-clay',
     brand: 'bg-royal',
     media: 'bg-blue-500',
@@ -375,7 +375,7 @@ function EventCard({ event, index }: { event: Event; index: number }) {
       }`}
     >
       {/* Image Container */}
-      <div className="relative h-48 bg-gradient-to-br from-gold-50 to-earth-50">
+      <div className="relative h-48 bg-gradient-to-br from-yellow-50 to-earth-50">
         {event.featuredImage?.asset?.url ? (
           <Image
             src={event.featuredImage.asset.url}
@@ -482,7 +482,7 @@ function EventCard({ event, index }: { event: Event; index: number }) {
               href={event.registration.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-2 bg-gold-500 text-white text-sm rounded-full hover:bg-gold-600 transition-colors"
+              className="inline-flex items-center px-4 py-2 bg-yellow-500 text-white text-sm rounded-full hover:bg-yellow-600 transition-colors"
             >
               Register Now
               <ExternalLink className="w-3 h-3 ml-2" />
@@ -507,7 +507,7 @@ function EventCard({ event, index }: { event: Event; index: number }) {
       </div>
 
       {/* Hover Effect */}
-      <div className="absolute inset-0 border-2 border-gold-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+      <div className="absolute inset-0 border-2 border-yellow-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
     </motion.div>
   )
 }
