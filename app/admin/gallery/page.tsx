@@ -143,7 +143,7 @@ export default function AdminGalleryPage() {
   })
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gold-50 to-earth-50 p-4 md:p-8">
+    <div className="min-h-screen bg-linear-to-br from-gold-50 to-earth-50 p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">

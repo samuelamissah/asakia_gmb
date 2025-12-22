@@ -75,9 +75,9 @@ export default function AboutPage() {
           animate={{ opacity: 1, x: 0 }}
           className="relative"
         >
-          <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl">
+          <div className="relative h-125 rounded-2xl overflow-hidden shadow-2xl">
             {/* Placeholder for profile image */}
-            <div className="absolute inset-0 bg-gradient-to-br from-yellow-100 to-earth-100" />
+            <div className="absolute inset-0 bg-linear-to-br from-yellow-100 to-earth-100" />
           </div>
           <div className="absolute -bottom-6 -right-6 bg-yellow-500 text-white p-6 rounded-xl shadow-xl">
             <div className="text-3xl font-bold">GMB 2025</div>
