@@ -138,10 +138,10 @@ export default function Home() {
                       priority
                     />
                     {/* Royal gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-earth-900 via-earth-900/70 to-transparent" />
+                    <div className="absolute inset-0 bg-linear-to-t from-earth-900 via-earth-900/70 to-transparent" />
                     
                     {/* Shimmer effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-500/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+                    <div className="absolute inset-0 bg-linear-to-r from-transparent via-yellow-500/10 to-transparent translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                   </div>
 
                   {/* Royal frame */}
@@ -226,7 +226,7 @@ export default function Home() {
 
       {/* Gallery Preview */}
       <section className="py-20 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-earth-950/10 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-b from-transparent via-earth-950/10 to-transparent" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="flex justify-between items-center mb-12">
             <div>
