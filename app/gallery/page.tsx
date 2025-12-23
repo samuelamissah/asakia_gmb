@@ -37,15 +37,7 @@ const categories = [
   { id: 'personal-moments', label: 'Personal Moments' },
 ]
 
-// Folder structure in public/gallery/
-// public/gallery/
-//   ├── gmb-pageant/
-//   │   ├── image1.jpg
-//   │   ├── image2.jpg
-//   │   └── ...
-//   ├── cultural-events/
-//   │   └── ...
-//   └── ...
+
 
 export default function GalleryPage() {
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([])

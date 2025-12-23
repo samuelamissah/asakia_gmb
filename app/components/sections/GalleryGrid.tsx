@@ -15,21 +15,21 @@ const galleryImages = [
   },
   {
     id: 2,
-    src: '/gallery/2.jpg',
+    src: '/image4.jpg',
     title: 'Cultural Showcase',
     category: 'Cultural',
     description: 'Traditional attire presentation',
   },
   {
     id: 3,
-    src: '/gallery/3.jpg',
+    src: '/image5.png',
     title: 'Community Outreach',
     category: 'Community',
     description: 'Women empowerment workshop',
   },
   {
     id: 4,
-    src: '/gallery/4.jpg',
+    src: '/image6.png',
     title: 'Media Interview',
     category: 'Press',
     description: 'National television feature',
@@ -190,7 +190,7 @@ export default function GalleryGrid({ limit }: { limit?: number }) {
                 </div>
 
                 {/* Info section */}
-                <div className="md:w-1/3 p-6 md:p-8 bg-gradient-to-b from-earth-800 to-earth-900">
+                <div className="md:w-1/3 p-6 md:p-8 bg-linear-to-b from-earth-800 to-earth-900">
                   <div className="mb-6">
                     <span className="inline-block px-4 py-2 bg-yellow-500 text-white text-sm font-medium rounded-full mb-4">
                       {selectedImage.category}
