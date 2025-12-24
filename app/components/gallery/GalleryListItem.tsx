@@ -42,7 +42,7 @@ export default function GalleryListItem({ gallery, index, onClick }: GalleryList
     >
       <div className="flex flex-col md:flex-row">
         {/* Image */}
-        <div className="md:w-64 h-48 md:h-auto relative bg-gradient-to-br from-gold-50 to-earth-50">
+        <div className="md:w-64 h-48 md:h-auto relative bg-linear-to-br from-gold-50 to-earth-50">
           {gallery.images?.[0]?.asset?.url ? (
             <div 
               className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-300"

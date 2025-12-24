@@ -1,7 +1,7 @@
+// components/sections/PartnerCard.tsx
 "use client"
 
 import { motion } from 'framer-motion'
-import { ExternalLink } from 'lucide-react'
 
 interface PartnerCardProps {
   partner: {
@@ -9,6 +9,7 @@ interface PartnerCardProps {
     category: string
     description: string
     logo: string
+    link?: string
   }
   index: number
 }
@@ -20,36 +21,44 @@ export default function PartnerCard({ partner, index }: PartnerCardProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
       whileHover={{ y: -5 }}
-      className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
+      className="group"
     >
-      {/* Logo */}
-      <div className="h-48 bg-gradient-to-br from-yellow-50 to-earth-50 flex items-center justify-center p-8">
-        <div className="text-center">
-          <div className="text-4xl mb-2">🏢</div>
-          <div className="font-heading text-xl font-semibold text-earth-500">
-            {partner.name}
+      <a
+        href={partner.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 h-full"
+      >
+        {/* Logo placeholder */}
+        <div className="w-full h-32 bg-earth-50 rounded-lg mb-4 flex items-center justify-center">
+          <div className="text-earth-500 font-semibold text-center">
+            {partner.name.split(' ').map(word => word[0]).join('')}
           </div>
         </div>
-      </div>
-
-      {/* Content */}
-      <div className="p-6">
-        <div className="inline-block px-3 py-1 bg-yellow-100 text-yellow-600 text-xs rounded-full mb-3">
-          {partner.category}
+        <div className="mb-2">
+          <span className="inline-block px-3 py-1 text-xs font-medium text-earth-600 bg-earth-100 rounded-full">
+            {partner.category}
+          </span>
         </div>
-        <p className="text-earth-300 mb-4">{partner.description}</p>
-        
-        <div className="flex items-center justify-between">
-          <button className="text-yellow-500 hover:text-yellow-600 font-medium text-sm flex items-center">
-            Learn More
-            <ExternalLink className="w-4 h-4 ml-1" />
-          </button>
-          <span className="text-xs text-earth-200">Active Partnership</span>
+        <h3 className="font-heading text-lg font-semibold text-earth-500 mb-2 group-hover:text-yellow-500 transition-colors">
+          {partner.name}
+        </h3>
+        <p className="text-earth-300 text-sm mb-4">{partner.description}</p>
+        <div className="mt-4 pt-4 border-t border-earth-100">
+          <span className="text-sm text-yellow-500 font-medium inline-flex items-center">
+            Visit website
+            <svg 
+              className="ml-1 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24" 
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </span>
         </div>
-      </div>
-
-      {/* Hover Effect */}
-      <div className="absolute inset-0 border-2 border-yellow-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+      </a>
     </motion.div>
   )
 }

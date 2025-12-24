@@ -10,17 +10,19 @@ const allPressItems = [
     id: 1,
     outlet: 'TV3 Ghana',
     title: 'GMB 2025 Grand Finale: Asakia Hanan Crowned First Runner-Up',
-    date: 'October 15, 2025',
+    date: 'October 20, 2025',
     type: 'Television',
     featured: true,
+    link: 'https://web.facebook.com/TV3GH/posts/from-upper-east-with-pride-asakia-shines-as-the-1st-runner-up-a-queen-in-every-s/1271282665033545/?_rdc=1&_rdr#',
   },
   {
     id: 2,
-    outlet: 'Daily Graphic',
-    title: 'Cultural Preservation in Modern Ghana: A Conversation with Asakia Hanan',
-    date: 'November 1, 2025',
+    outlet: '3 News Gh',
+    title: 'ActionAid Ghana collaborates with GMB Queen Asakia for 2025 GEAP Annual Conference in Tamale',
+    date: 'November 21, 2025',
     type: 'Newspaper',
     featured: true,
+    link: 'https://dailygraphic.com/cultural-preservation-asakia-hanan',
   },
   {
     id: 3,
@@ -29,6 +31,7 @@ const allPressItems = [
     date: 'November 20, 2025',
     type: 'Radio',
     featured: false,
+    link: 'https://citifmonline.com/women-agriculture-asakia-hanan',
   },
   {
     id: 4,
@@ -37,6 +40,7 @@ const allPressItems = [
     date: 'December 5, 2025',
     type: 'Online',
     featured: false,
+    link: 'https://ghanaweb.com/pageant-purpose-asakia-hanan',
   },
   {
     id: 5,
@@ -45,6 +49,7 @@ const allPressItems = [
     date: 'December 12, 2025',
     type: 'Television',
     featured: false,
+    link: 'https://joynews.com/youth-empowerment-cultural-education',
   },
   {
     id: 6,
@@ -53,6 +58,7 @@ const allPressItems = [
     date: 'December 18, 2025',
     type: 'Online',
     featured: false,
+    link: 'https://modernghana.com/fashion-cultural-expression',
   },
 ]
 
@@ -117,7 +123,7 @@ export default function PressPage() {
           <div className="flex items-center space-x-2">
             <Filter className="w-5 h-5 text-earth-300" />
             <select
-            title= 'Filter press coverage by media type'
+              title='Filter press coverage by media type'
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
               className="px-4 py-3 border border-earth-200 rounded-full focus:outline-none focus:border-yellow-500"
@@ -131,52 +137,100 @@ export default function PressPage() {
           </div>
         </div>
 
+        {/* Results Count */}
+        <div className="mb-6 text-sm text-earth-300">
+          Showing {filteredItems.length} of {allPressItems.length} articles
+        </div>
+
         {/* Press Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredItems.map((item, i) => (
-            <motion.div
+            <a
               key={item.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -5 }}
-              className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden ${
-                item.featured ? 'border-2 border-yellow-500' : ''
-              }`}
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block group"
             >
-              <div className="p-6">
-                {item.featured && (
-                  <div className="inline-block px-3 py-1 bg-yellow-100 text-yellow-600 text-xs rounded-full mb-3">
-                    Featured
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -5, scale: 1.02 }}
+                className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden h-full ${
+                  item.featured ? 'border-2 border-yellow-500' : ''
+                }`}
+              >
+                <div className="p-6 h-full flex flex-col">
+                  <div className="flex-1">
+                    {item.featured && (
+                      <div className="inline-flex items-center px-3 py-1 bg-yellow-100 text-yellow-600 text-xs rounded-full mb-3">
+                        <span className="w-2 h-2 bg-yellow-500 rounded-full mr-2"></span>
+                        Featured
+                      </div>
+                    )}
+                    
+                    <div className="flex items-center mb-3">
+                      <div className={`w-3 h-3 rounded-full ${
+                        item.type === 'Television' ? 'bg-blue-500' :
+                        item.type === 'Newspaper' ? 'bg-red-500' :
+                        item.type === 'Radio' ? 'bg-orange-500' : 'bg-green-500'
+                      }`} />
+                      <span className="ml-2 text-sm text-earth-300">{item.type}</span>
+                    </div>
+                    
+                    <h3 className="font-heading text-lg font-semibold text-earth-500 mb-2 group-hover:text-yellow-500 transition-colors">
+                      {item.title}
+                    </h3>
                   </div>
-                )}
-                
-                <div className="flex items-center mb-3">
-                  <div className={`w-3 h-3 rounded-full ${
-                    item.type === 'Television' ? 'bg-blue-500' :
-                    item.type === 'Newspaper' ? 'bg-red-500' :
-                    item.type === 'Radio' ? 'bg-orange-500' : 'bg-green-500'
-                  }`} />
-                  <span className="ml-2 text-sm text-earth-300">{item.type}</span>
-                </div>
-                
-                <h3 className="font-heading text-lg font-semibold text-earth-500 mb-2">
-                  {item.title}
-                </h3>
-                
-                <div className="flex items-center justify-between mt-4 pt-4 border-t border-earth-100">
-                  <div>
-                    <div className="font-medium text-earth-500">{item.outlet}</div>
-                    <div className="text-sm text-earth-300">{item.date}</div>
+                  
+                  <div className="mt-4 pt-4 border-t border-earth-100">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="font-medium text-earth-500 group-hover:text-earth-600 transition-colors">
+                          {item.outlet}
+                        </div>
+                        <div className="text-sm text-earth-300">{item.date}</div>
+                      </div>
+                      <span className="text-yellow-500 group-hover:text-yellow-600 font-medium text-sm inline-flex items-center transition-colors">
+                        Read
+                        <svg 
+                          className="ml-1 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" 
+                          fill="none" 
+                          stroke="currentColor" 
+                          viewBox="0 0 24 24" 
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                      </span>
+                    </div>
                   </div>
-                  <button className="text-yellow-500 hover:text-yellow-600 font-medium text-sm">
-                    Read →
-                  </button>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </a>
           ))}
         </div>
+
+        {/* No Results Message */}
+        {filteredItems.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-12"
+          >
+            <div className="text-earth-300 mb-4">No articles found matching your criteria.</div>
+            <button
+              onClick={() => {
+                setSearch('')
+                setFilter('all')
+              }}
+              className="text-yellow-500 hover:text-yellow-600 font-medium"
+            >
+              Clear filters
+            </button>
+          </motion.div>
+        )}
       </div>
 
       {/* Press Highlights Section */}
